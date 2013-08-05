@@ -4,12 +4,12 @@ pyUspsLib
 NOTES
 -------------------------
 Requires Requests
-USPS requires you run tests with their data before you can get production permissions. THese tests are included.
+USPS requires you run tests with their data before you can get production permissions. These tests are included.
 
 
 Features
 -------------------------
-This package allows you to get data from USPS. It currently support all address verification, shipping pricing, and package tracking.
+This package allows you to get data from USPS. It currently supports address verification, shipping pricing, and package tracking.
 
 
 Installation
@@ -17,7 +17,7 @@ Installation
 
 EASY :
 
-	pip install pyUspsLib
+	pip install pyuspslib
 
 from github :
 
@@ -26,7 +26,7 @@ from github :
 
 Running the USPS test data:
 	
-	from pyUspsLib import tests
+	from pyuspslib import tests
 	user_id = 'my_usps_user_id'
 	tests.run_all_tests(user_id)
 
@@ -34,13 +34,13 @@ Running the USPS test data:
 	Despite the docuementation, you don't have access yet
 
 
-After running the tests, give USPS a call. The instructions say to email, but they didn't send me a response in 72 hours. The phone call took minutes.
+After running the tests, give USPS a call. The instructions say to email, but I gave up after waiting 72 hours. The phone call took minutes.
 
 
 BASIC USAGE
 ==================
 
-	from pyUspsLib.lib import USPS
+	from pyuspslib.lib import USPS
 	user_id = 'my_usps_user_id'
 
 	usps = USPS(user_id)
@@ -85,7 +85,7 @@ USPS has specific fields that must be sent. With shipping prices, the structure 
 
 1) Start by copying the defaults.py file and creating a usps instance like this:
 
-	from pyUspsLib.lib import USPS
+	from pyuspslib.lib import USPS
 	import my_custom_defaults
 
 	user_id = 'my_usps_user_id'
@@ -96,9 +96,9 @@ USPS has specific fields that must be sent. With shipping prices, the structure 
 
 	USPS_MERCHANT_ORIGIN_ZIPCODE = 'your zipcode'
 
-3) you should also set useful defautls for package defaults. Weight, size, and shape all affect the price. International pacakges need additonal information.
+3) You should also set useful defaults for package defaults. Weight, size, and shape all affect the price. International pacakges need additonal information.
 
-4) The methods provided are written to be simple, and pull the data needed from the defaults. If you need more control, see the advanced section.
+4) The methods provided are written to be simple, and pull the extra data needed from the defaults. If you need more control, see the advanced section.
 
 	#returns price of domestic shipping
 	#needs shipping_type and destination zipcode
@@ -110,9 +110,9 @@ USPS has specific fields that must be sent. With shipping prices, the structure 
 
 International shipping is more complicated. You're basically forced into advanced usage - which is still really simple.
 
-USPS requires fields, even if empty. We'll pull the tempalte from the defaults and stuff our values in the template.	
+USPS requires fields, even if empty. We'll pull the template from the defaults and stuff our values in the template.	
 
-	from pyUspsLib import defaults 
+	from pyuspslib import defaults 
 
 	#merge default data with new value
 	package_data = defaults.USPS_DEFAULT_INTERNATIONAL_PACKAGE_DATA.update({'ValueOfContents':'50'})
@@ -129,11 +129,11 @@ USPS requires fields, even if empty. We'll pull the tempalte from the defaults a
 ADVANCED USAGE
 ==================
 
-The usps library written to provide some conveience, but also allow you to override everything. You've probably noticed that all methods return a dictionary with a 'xml' key. You can crawl that data as much as you like to get anything usps provides.
+The USPS library is written to provide some convenience, but also allow you to override everything. You've probably noticed that all methods return a dictionary with a 'xml' key. You can crawl that data as much as you like to get anything usps provides.
 
-the methods, at first glance, allow limited data entry, however they have arguments with defaults you can override.
+The methods, at first glance, allow limited data entry, however they have arguments with defaults you can override.
 
-For example, if you are getting domestic shipping estimate and the shipping type and zipcode are not enough, look at the methods  in lib.USPS to see what you can override.
+For example, if you are getting a domestic shipping estimate and the shipping type and zipcode are not enough, look at the methods  in lib.USPS to see what you can override.
 
 Instead of this:
 	
@@ -143,11 +143,11 @@ you can call this:
 	
 	response usps.price_domestic_shipping(shipping_type, destination_zipcode, package_data=None, api='RateV4')
 
-If set to None, the method pulls in the defaults.USPS_DEFAULT_DOMESTIC_PACKAGE_DATA and uses that. For custom data, bring in your own isntance and override the values.
+If package_data = None, the method pulls in the defaults.USPS_DEFAULT_DOMESTIC_PACKAGE_DATA and uses that. For custom data, bring in your own instance and override the values.
 	
 	package_data = defaults.USPS_DEFAULT_INTERNATIONAL_PACKAGE_DATA.update({'ValueOfContents':'50'})
 
-and and pass your package_data into the method
+and pass your package_data into the method
 
 
 
