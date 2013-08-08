@@ -12,6 +12,7 @@ domestic_shipping_template = '''<RateV4Request>
 <Length></Length>
 <Height></Height>
 <Girth></Girth>
+<Machinable></Machinable>
 </Package>
 </RateV4Request>'''
 

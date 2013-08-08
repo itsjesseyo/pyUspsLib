@@ -13,8 +13,9 @@ class USPS():
 		self.base_shipping_fee = settings_file.USPS_BASE_SHIPPING_FEE
 		self.merchant_zipcode = settings_file.USPS_MERCHANT_ORIGIN_ZIPCODE
 		self.base_url = settings_file.USPS_TEST_URL if settings_file.USPS_TESTMODE else settings_file.USPS_PRODUCTION_URL
-		self.default_domestic_package_data = settings_file.USPS_DEFAULT_DOMESTIC_PACKAGE_DATA
-		self.default_international_package_data = settings_file.USPS_DEFAULT_INTERNATIONAL_PACKAGE_DATA
+		#self.default_domestic_package_data = settings_file.USPS_DEFAULT_DOMESTIC_PACKAGE_DATA
+		#self.default_international_package_data = settings_file.USPS_DEFAULT_INTERNATIONAL_PACKAGE_DATA
+		self.default_domestic_package_data = {}
 		self.templates = templates
 
 	##########################
