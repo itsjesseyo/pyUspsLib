@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='pyUspsLib',
-    version='0.1.0',
+    version='0.1.1',
     author='Jesse Gomez',
     author_email='jesse@luxnovalabs.com',
     packages=['pyuspslib'],
